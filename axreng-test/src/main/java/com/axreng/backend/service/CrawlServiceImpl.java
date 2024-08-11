@@ -1,12 +1,14 @@
 package com.axreng.backend.service;
 
 import com.axreng.backend.repositories.scrapper.ScrapperRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.axreng.backend.factory.RepositoryFactory.createRepository;
 import static com.axreng.helpers.JsonHelpers.extractFieldFromJson;
 
 public class CrawlServiceImpl implements CrawlService {
-
+    private static final Logger logger = LoggerFactory.getLogger(CrawlServiceImpl.class);
     private final ScrapperRepository scrapperRepository;
 
     public CrawlServiceImpl() {
@@ -20,7 +22,7 @@ public class CrawlServiceImpl implements CrawlService {
             scrapperRepository.scrapeWebsite(id);
             return "200";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
             return "500";
         }
     }

@@ -3,6 +3,8 @@ package com.axreng.helpers;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -11,6 +13,7 @@ import static com.axreng.helpers.IDGenerator.generateId;
 
 @SuppressWarnings("ALL")
 public class JsonHelpers {
+    private static final Logger logger = LoggerFactory.getLogger(JsonHelpers.class);
 
     private static JsonArray buildJsonArray(){
         return new JsonArray();
@@ -46,7 +49,7 @@ public class JsonHelpers {
         }
 
         jsonObject.add("urls", urls);
-
+        logger.info(jsonObject.toString());
         return jsonObject;
     }
 
