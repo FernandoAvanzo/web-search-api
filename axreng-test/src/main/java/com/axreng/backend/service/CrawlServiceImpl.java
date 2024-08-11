@@ -3,6 +3,7 @@ package com.axreng.backend.service;
 import com.axreng.backend.repositories.scrapper.ScrapperRepository;
 
 import static com.axreng.backend.factory.RepositoryFactory.createRepository;
+import static com.axreng.helpers.JsonHelpers.extractFieldFromJson;
 
 public class CrawlServiceImpl implements CrawlService {
 
@@ -13,9 +14,15 @@ public class CrawlServiceImpl implements CrawlService {
     }
 
     @Override
-    public String crawl(String keyword) {
-        scrapperRepository.scrapeWebsite(keyword);
-        return "200";
+    public String crawl(String body) {
+        try {
+            final String id = extractFieldFromJson(body, "keyword");
+            scrapperRepository.scrapeWebsite(id);
+            return "200";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "500";
+        }
     }
 
     @Override
@@ -23,4 +30,3 @@ public class CrawlServiceImpl implements CrawlService {
         return scrapperRepository.scraperResult(id);
     }
 }
-

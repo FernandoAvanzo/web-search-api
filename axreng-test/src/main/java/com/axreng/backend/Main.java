@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         CrawlService crawlService = createCrawlService();
         get("/crawl/:id", (req, res) ->
-                "GET /crawl/" + req.params("id"));
+                crawlService.crawl(req.params("id")));
         post("/crawl", (req, res) ->
                 crawlService.crawl(req.body()));
     }
