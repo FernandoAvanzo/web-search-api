@@ -13,8 +13,9 @@ public class CrawlServiceImpl implements CrawlService {
     }
 
     @Override
-    public void crawl(String keyword) {
+    public String crawl(String keyword) {
         scrapperRepository.scrapeWebsite(keyword);
+        return "200";
     }
 
     @Override
