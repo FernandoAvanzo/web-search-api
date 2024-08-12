@@ -10,9 +10,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.axreng.helpers.EnvironmentConfig.getBaseUrl;
+
 public class WebDocument {
     public static Document loadDocument() throws Exception {
-        String urlString = "http://hiring.axreng.com/"; // Corrected here
+        final String urlString = getBaseUrl();
 
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

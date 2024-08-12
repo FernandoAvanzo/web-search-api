@@ -7,10 +7,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CrawlServiceTest {
 
+    @Test
+    void testCrawlServiceError() {
+        CrawlService crawlService = ServiceFactory.createCrawlService();
+        assertEquals(crawlService.crawl("Linux"), "500");
+    }
 
     @Test
-    void crawl() {
-        CrawlService crawlService = ServiceFactory.createCrawlService();;
-        assertDoesNotThrow(() -> crawlService.crawl("Linux"));
+    void testCrawlServiceSuccess() {
+        String body = "{\"keyword\": \"linux\"}";
+        CrawlService crawlService = ServiceFactory.createCrawlService();
+        assertEquals(crawlService.crawl(body), "200");
     }
 }
